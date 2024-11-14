@@ -17,7 +17,7 @@
 
 #### 方法一：通过 UnityPackage 导入
 
-下载最新版本的 **ABetterChoice.unitypackage** 资源文件，并将其导入到您的 Unity 项目中：
+下载最新版本的 [**ABetterChoice.unitypackage**](https://cdn.abetterchoice.cn/static/cms/ABetterChoice.unitypackage) 资源文件，并将其导入到您的 Unity 项目中：
 
 1. 在 Unity 编辑器顶部菜单栏，选择 **Assets > Import Package > Custom Package**。
 2. 在弹出的文件选择对话框中，找到并选择您下载的 **ABetterChoice.unitypackage** 文件。

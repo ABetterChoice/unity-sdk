@@ -1,0 +1,6 @@
+{
+	"name": "AbcSDKSpace",
+	"references": [
+		"Wx"
+	]
+}

@@ -46,8 +46,8 @@
 
 针对不同的平台添加对应的全局宏参数：
 
-- **微信小游戏**：`ABC_WECHAT_GAME_MODE`
-- **抖音小游戏**：`ABC_BYTEDANCE_GAME_MODE`
+- **微信小游戏**：`ABC_WECHAT_MINIGAME`
+- **抖音小游戏**：`ABC_BYTEDANCE_MINIGAME`
 
 添加步骤如下：
 

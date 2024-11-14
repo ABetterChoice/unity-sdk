@@ -13,7 +13,29 @@
 
 ### 1. 导入 SDK
 
-下载最新版本的 **ABetterChoice.unitypackage** 资源文件，并将其导入到您的 Unity 项目中：`Assets > Import Package > Custom Package`，选择您刚刚下载的文件。
+有两种方式将 **ABetterChoice SDK** 集成到您的 Unity 项目中：
+
+#### 方法一：通过 UnityPackage 导入
+
+下载最新版本的 **ABetterChoice.unitypackage** 资源文件，并将其导入到您的 Unity 项目中：
+
+1. 在 Unity 编辑器顶部菜单栏，选择 **Assets > Import Package > Custom Package**。
+2. 在弹出的文件选择对话框中，找到并选择您下载的 **ABetterChoice.unitypackage** 文件。
+3. 点击 **Import**，等待 Unity 完成导入。
+
+#### 方法二：通过 Git 安装
+
+您也可以通过 Git 将 **ABetterChoice SDK** 集成到您的项目中：
+
+1. 打开 Unity 编辑器，选择 **Window > Package Manager**。
+2. 在 Package Manager 窗口中，点击左上角的 **+** 按钮，选择 **Add package from git URL...**。
+3. 在弹出的输入框中，输入 SDK 的 Git 仓库地址：
+
+   ```
+   https://github.com/ABetterChoice/unity-sdk.git
+   ```
+
+4. 点击 **Add**，Unity 将自动从指定的 Git 仓库拉取 SDK 并添加到您的项目中。
 
 > **注意：**
 >
@@ -29,13 +51,19 @@
 
 添加步骤如下：
 
-1. 打开 **Project Settings** 界面。
-2. 找到 **Scripting Define Symbols**，新增一行输入对应的平台全局宏参数，然后点击 **Apply** 按钮完成设置。
+1. 打开 Unity 编辑器，选择 **Edit > Project Settings**。
+2. 在左侧菜单中，点击 **Player**，然后选择相应的目标平台（如 **WebGL**）。
+3. 展开 **Other Settings**，找到 **Scripting Define Symbols**。
+4. 在对应的平台下，输入上述宏参数，多个宏参数之间使用分号 **` ; `** 分隔。
+5. 输入完成后，Unity 会自动应用设置。
 
 > **注意：**
 >
 > 请确保正式打包上线时，选中的宏参数正常生效，否则会影响到对应平台的事件上报，影响实验结果。
 
+---
+
+通过以上步骤，您可以选择最适合的方式将 **ABetterChoice SDK** 集成到您的 Unity 项目中。如果您对 Git 更加熟悉，方法二可以帮助您方便地管理 SDK 的版本和更新。
 ### 3. 初始化 SDK 参数
 
 在您的代码中，初始化 SDK。示例如下：

@@ -47,6 +47,11 @@ namespace AbcSDKSpace
                 {
                     return result;
                 }
+                
+                if (int.TryParse(value, out int intValue))
+                {
+                    return intValue != 0;
+                }
             }
 
             return defaultValue;

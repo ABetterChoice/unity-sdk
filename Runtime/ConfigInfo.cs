@@ -11,142 +11,84 @@ namespace AbcSDKSpace
 
         public ExperimentInfo RelativeExperiment { get; set; }
 
-        /// <summary>
-        /// Returns the Value as a string.
-        /// </summary>
-        public string GetStringValue()
-        {
-            return Value;
-        }
-
-        public string GetStringValue(string defaultValue)
+        public string GetStringValue(string defaultValue = default)
         {
             return Value == "" ? defaultValue : Value;
         }
 
         /// <summary>
         /// Attempts to parse the Value as an integer.
-        /// Throws a FormatException if parsing fails.
-        /// </summary>
-        public int GetIntValue()
-        {
-            return int.Parse(Value);
-        }
-
-        /// <summary>
-        /// Attempts to parse the Value as an integer.
         /// Returns defaultValue if parsing fails.
         /// </summary>
-        public int GetIntValue(int defaultValue)
+        public int GetIntValue(int defaultValue = default)
         {
             if (int.TryParse(Value, out int result))
             {
                 return result;
             }
-            else
-            {
-                return defaultValue;
-            }
-        }
 
-        /// <summary>
-        /// Attempts to parse the Value as a boolean.
-        /// Throws a FormatException if parsing fails.
-        /// </summary>
-        public bool GetBoolValue()
-        {
-            return bool.Parse(Value);
+            return defaultValue;
         }
 
         /// <summary>
         /// Attempts to parse the Value as a boolean.
         /// Returns defaultValue if parsing fails.
         /// </summary>
-        public bool GetBoolValue(bool defaultValue)
+        public bool GetBoolValue(bool defaultValue = default)
         {
             if (bool.TryParse(Value, out bool result))
             {
                 return result;
             }
-            else
-            {
-                return defaultValue;
-            }
-        }
 
-        /// <summary>
-        /// Attempts to parse the Value as a float.
-        /// Throws a FormatException if parsing fails.
-        /// </summary>
-        public float GetFloatValue()
-        {
-            return float.Parse(Value);
+            if (int.TryParse(Value, out int intValue))
+            {
+                return intValue != 0;
+            }
+            
+            return defaultValue;
         }
 
         /// <summary>
         /// Attempts to parse the Value as a float.
         /// Returns defaultValue if parsing fails.
         /// </summary>
-        public float GetFloatValue(float defaultValue)
+        public float GetFloatValue(float defaultValue = default)
         {
             if (float.TryParse(Value, out float result))
             {
                 return result;
             }
-            else
-            {
-                return defaultValue;
-            }
-        }
 
-        /// <summary>
-        /// Attempts to parse the Value as a double.
-        /// Throws a FormatException if parsing fails.
-        /// </summary>
-        public double GetDoubleValue()
-        {
-            return double.Parse(Value);
+            return defaultValue;
         }
 
         /// <summary>
         /// Attempts to parse the Value as a double.
         /// Returns defaultValue if parsing fails.
         /// </summary>
-        public double GetDoubleValue(double defaultValue)
+        public double GetDoubleValue(double defaultValue = default)
         {
             if (double.TryParse(Value, out double result))
             {
                 return result;
             }
-            else
-            {
-                return defaultValue;
-            }
-        }
 
-        /// <summary>
-        /// Attempts to parse the Value as a long.
-        /// Throws a FormatException if parsing fails.
-        /// </summary>
-        public long GetLongValue()
-        {
-            return long.Parse(Value);
+            return defaultValue;
         }
 
         /// <summary>
         /// Attempts to parse the Value as a long.
         /// Returns defaultValue if parsing fails.
         /// </summary>
-        public long GetLongValue(long defaultValue)
+        public long GetLongValue(long defaultValue = default)
         {
             if (long.TryParse(Value, out long result))
             {
                 return result;
             }
-            else
-            {
-                return defaultValue;
-            }
+
+            return defaultValue;
         }
 
         /// <summary>

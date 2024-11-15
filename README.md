@@ -183,7 +183,7 @@ AbcSDKSpace.ABetterChoiceAPI.Track("product_buy", eventProperties);
 AbcSDKSpace.ExperimentInfo experiment = AbcSDKSpace.ABetterChoiceAPI.GetExperiment("YourLayerKey");
 
 // 现在您可以获取参数并在代码中直接使用这些参数。
-bool yourParamValue = experiment?.GetBoolValue("YourParamKey", true);
+bool yourParamValue = experiment?.GetBoolValue("YourParamKey", true) ?? true;
 ```
 
 ### 2.5 实验曝光
@@ -202,9 +202,9 @@ AbcSDKSpace.ABetterChoiceAPI.LogExperimentExposure(experiment);
 AbcSDKSpace.ConfigInfo configInfo = AbcSDKSpace.ABetterChoiceAPI.GetConfig("YourConfigKey");
 
 // 获取配置开关的值
-bool boolValue = configInfo?.GetBoolValue(true);
-// string stringValue = configInfo?.GetStringValue("");
-// int intValue = configInfo?.GetIntValue();
+bool boolValue = configInfo?.GetBoolValue(true) ?? true;
+// string stringValue = configInfo?.GetStringValue("") ?? "";
+// int intValue = configInfo?.GetIntValue(0) ?? 0;
 ```
 
 若配置了条件，如下图创建所示，假设您创造了开关配置参数名称为'new_feature_flag'，配置条件配置参数属性为'city'与'age'，条件参数属性值为'shenzhen'与'18'，则满足这个条件则会进行下发布尔值true。
@@ -227,7 +227,7 @@ AbcSDKSpace.Config config = new AbcSDKSpace.Config
 AbcSDKSpace.ConfigInfo configInfo = AbcSDKSpace.ABetterChoiceAPI.GetConfig("new_feature_flag");
 
 // 获取对应配置开关的参数值,其中参数为默认值
-bool boolValue = configInfo?.GetBoolValue(false);
+var boolValue = configInfo?.GetBoolValue(false) ?? false;
 ```
 
 ---
@@ -288,7 +288,7 @@ public class ABetterChoiceExample : MonoBehaviour
 
                 // 获取实验分流信息
                 AbcSDKSpace.ExperimentInfo experiment = AbcSDKSpace.ABetterChoiceAPI.GetExperiment("abc_layer_name");
-                bool shouldShowBanner = experiment?.GetBoolValue("should_show_banner", true);
+                bool shouldShowBanner = experiment?.GetBoolValue("should_show_banner", true) ?? true;
                 if (shouldShowBanner)
                 {
                     // 显示 Banner
@@ -303,7 +303,7 @@ public class ABetterChoiceExample : MonoBehaviour
 
                 // 获取配置开关
                 AbcSDKSpace.ConfigInfo configInfo = AbcSDKSpace.ABetterChoiceAPI.GetConfig("new_feature_flag");
-                bool boolValue = configInfo?.GetBoolValue(true);
+                bool boolValue = configInfo?.GetBoolValue(true) ?? true;
             }
             else
             {

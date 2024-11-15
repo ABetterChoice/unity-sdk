@@ -21,7 +21,7 @@ namespace AbcSDKSpace
 
         public string GetStringValue(string defaultValue)
         {
-            return Value == "" ? default : Value;
+            return Value == "" ? defaultValue : Value;
         }
 
         /// <summary>

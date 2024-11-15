@@ -105,7 +105,7 @@ AbcSDKSpace.ABetterChoiceAPI.Init(config, result =>
 **Config 对象其他可选参数说明：**
 
 - **Attributes**：可选，实验分流的属性条件，类型为 `Dictionary<string, List<string>>`，其中 `string` 为条件属性，`List<string>` 为对应的条件属性值数组。
-- **EnableAutoExposure**：可选，实验分流使用，默认值为 `false`。如果设置为 `true`，当调用 AB 实验分流时，曝光数据将自动上报。
+- **EnableAutoExposure**：可选，实验分流使用，默认值为 `true`。如果设置为 `false`，当调用 AB 实验分流时，曝光数据将不会自动上报。
 - **EnableAutoPoll**：可选，实验分流使用，默认值为 `true`。如果设置为 `true`，实验和功能标志数据将每 10 分钟轮询并更新。
 
 **警示**：无论您获取帐号 ID 是异步还是同步的，请在使用 SDK 接入完成后用下面的login接口进行帐号 ID 的登陆，以确保数据计算结果的准确性。

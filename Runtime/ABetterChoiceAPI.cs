@@ -39,23 +39,6 @@ namespace AbcSDKSpace
             }
         }
 
-        // /// <summary>
-        // /// 不接受回调函数的 Init 方法
-        // /// </summary>
-        // /// <param name="config"></param>
-        // public static void Init(Config config)
-        // {
-        //     if (isInitialized || isInitializing)
-        //     {
-        //         // 已经初始化完成或正在初始化，直接返回
-        //         return;
-        //     }
-        //
-        //     isInitializing = true;
-        //     // 启动初始化协程
-        //     CoroutineRunner.Instance.StartCoroutine(InitializeCoroutine(config));
-        // }
-
         private static IEnumerator InitializeCoroutine(Config config)
         {
             if (_projectInstance == null)
@@ -119,6 +102,7 @@ namespace AbcSDKSpace
                 pendingUnitID = unitID;
                 return true;
             }
+
             return true;
         }
 

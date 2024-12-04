@@ -106,6 +106,7 @@ namespace AbcSDKSpace
                 {
                     interval = _controlData.ReportTimeInterval;
                 }
+
                 yield return new WaitForSeconds(interval);
 
                 if (_eventLogQueue.Count > 0)
@@ -377,6 +378,7 @@ namespace AbcSDKSpace
 
             return webRequest;
         }
+
         private void OnDestroy()
         {
             StopCoroutine(_flushCoroutine);

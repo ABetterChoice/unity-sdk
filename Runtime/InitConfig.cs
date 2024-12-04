@@ -2,6 +2,10 @@ using System.Collections.Generic;
 
 namespace AbcSDKSpace
 {
+    public class InitConfig
+    {
+    }
+    
     public class Config
     {
         public string GameId { get; set; }

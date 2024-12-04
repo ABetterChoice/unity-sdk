@@ -3,6 +3,10 @@ using SimpleJSON;
 
 namespace AbcSDKSpace
 {
+    public class Entity
+    {
+    }
+
     public enum RetCode
     {
         Unknown = 0,
@@ -58,13 +62,20 @@ namespace AbcSDKSpace
 
     public enum EventServerCode
     {
-        EventServerCodeSuccess = 0,                          // 正常返回
-        EventServerCodeNoPermission = 1001,                 // 无权限
-        EventServerCodeTrafficLimit = 1002,                 // 限流返回
-        EventServerCodeInvalidProjectID = 1003,            // 入参 projectID 出错
-        EventServerCodeServerErr = 1004,                    // 服务器处理异常
-        EventServerCodeInvalidParam = 1005,                 // 非法参数
-        EventServerCodeSameVersion = 2001                   // 版本未更新
+        // 正常返回
+        EventServerCodeSuccess = 0,
+        // 无权限
+        EventServerCodeNoPermission = 1001,
+        // 限流返回
+        EventServerCodeTrafficLimit = 1002,
+        // 入参 projectID 出错
+        EventServerCodeInvalidProjectID = 1003,
+        // 服务器处理异常
+        EventServerCodeServerErr = 1004,
+        // 非法参数
+        EventServerCodeInvalidParam = 1005,
+        // 版本未更新
+        EventServerCodeSameVersion = 2001
     }
 
     public class Token
@@ -1068,6 +1079,7 @@ namespace AbcSDKSpace
                     uidsArray.Add(uid);
                 }
             }
+
             json["uids"] = uidsArray;
             return json.ToString();
         }
@@ -1089,6 +1101,7 @@ namespace AbcSDKSpace
                     filter.Uids.Add(uidNode.Value);
                 }
             }
+
             return filter;
         }
     }
@@ -1181,6 +1194,7 @@ namespace AbcSDKSpace
                     eventSettingJson[kvp.Key] = JSON.Parse(kvp.Value.Serialize());
                 }
             }
+
             json["eventSetting"] = eventSettingJson;
 
             // 序列化 DefaultSetting
@@ -1219,6 +1233,7 @@ namespace AbcSDKSpace
                 {
                     string key = kvp.Key;
                     EventSetting value = AbcSDKSpace.EventSetting.Deserialize(kvp.Value.ToString());
+
                     resp.EventSetting.Add(key, value);
                 }
             }

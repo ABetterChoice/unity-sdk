@@ -24,6 +24,7 @@ namespace PlatformSdk
                     instance = new WeChatSDK();
 #endif
                 }
+
                 return instance;
             }
         }
@@ -31,9 +32,7 @@ namespace PlatformSdk
     
     public interface IPlatformSDK
     {
-        // 初始化系统属性
         void InitSystemProperties(Dictionary<string, string> systemProperties);
-        // 分享事件
         void InitAutoTrackShare(Action<EventLog> log);
         void InitAutoTrackShow(Action<EventLog> log);
         void InitAutoTrackHide(Action<EventLog> log, Action flushAll);

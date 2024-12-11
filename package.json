@@ -1,6 +1,6 @@
 {
   "name": "cn.abetterchoice.unitysdk",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "displayName": "ABetterChoice",
   "description": "ABetterChoice SDK for Unity projects",
   "unity": "2019.1",

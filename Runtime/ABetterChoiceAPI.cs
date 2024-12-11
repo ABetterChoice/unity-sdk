@@ -21,6 +21,25 @@ namespace AbcSDKSpace
         /// <param name="callback"></param>
         public static void Init(Config config, Action<Result> callback)
         {
+            // 参数不合法
+            if (string.IsNullOrEmpty(config.UnitId))
+            {
+                callback(new Result(StatusCode.InvalidParamErr, "缺少 unitID"));
+                return;
+            }
+
+            if (string.IsNullOrEmpty(config.GameId))
+            {
+                callback(new Result(StatusCode.InvalidParamErr, "缺少 gameID"));
+                return;
+            }
+
+            if (string.IsNullOrEmpty(config.ApiKey))
+            {
+                callback(new Result(StatusCode.InvalidParamErr, "缺少 apiKey"));
+                return;
+            }
+            
             if (isInitialized)
             {
                 // 初始化已经完成，直接回调成功结果
@@ -52,7 +71,7 @@ namespace AbcSDKSpace
             Result result = null;
 
             // 使用 login 的 id 作为 uinitid
-            if (string.IsNullOrEmpty(config.UnitId) && string.IsNullOrEmpty(pendingUnitID))
+            if (string.IsNullOrEmpty(config.UnitId) && !string.IsNullOrEmpty(pendingUnitID))
             {
                 config.UnitId = pendingUnitID;
             }

@@ -75,6 +75,7 @@ AbcSDKSpace.Config config = new AbcSDKSpace.Config
 {
     GameId = "YOUR_GAME_ID", // 项目游戏ID，必填，可以在ABetterChoice平台管理页查看
     ApiKey = "YOUR_API_KEY", // 项目API KEY，必填，可以在ABetterChoice平台管理页查看
+    UnitId = "YOUR_USER_OPENID", // 用户 openid，必填，用户的唯一标识，从对应小游戏平台获取
     AutoTrack = new AbcSDKSpace.AutoTrackConfig  // 可选，自动采集配置，默认全部打开
     {
         MgShow = true,  // 自动采集，游戏启动，或从后台进入前台，可选
@@ -90,9 +91,6 @@ AbcSDKSpace.ABetterChoiceAPI.Init(config, result =>
     {
         // 初始化成功
         Debug.Log("SDK 初始化成功");
-        
-        // 必须，用户的登录唯一标识
-        AbcSDKSpace.ABetterChoiceAPI.Login("USER_ID");
     }
     else
     {
@@ -108,11 +106,8 @@ AbcSDKSpace.ABetterChoiceAPI.Init(config, result =>
 - **EnableAutoExposure**：可选，实验分流使用，默认值为 `true`。如果设置为 `false`，当调用 AB 实验分流时，曝光数据将不会自动上报。
 - **EnableAutoPoll**：可选，实验分流使用，默认值为 `true`。如果设置为 `true`，实验和功能标志数据将每 10 分钟轮询并更新。
 
-**警示**：无论您获取帐号 ID 是异步还是同步的，请在使用 SDK 接入完成后用下面的login接口进行帐号 ID 的登陆，以确保数据计算结果的准确性。
-```csharp
-// 用户的唯一标识，此数据对应上报数据里的 user_id
-AbcSDKSpace.ABetterChoiceAPI.Login("USER_ID");
-```
+**警示**：无论您获取帐号 ID 是异步还是同步的，在获取到 openid 后尽可能早的完成 sdk 的初始化，以确保数据计算结果的准确性。
+
 
 > **注意：**
 >
@@ -125,20 +120,9 @@ AbcSDKSpace.ABetterChoiceAPI.Login("USER_ID");
 
 ## 二、常用功能
 
-在使用常用功能之前，确保 SDK 已初始化成功并已登录帐号 ID。
+在使用常用功能之前，确保 SDK 已初始化成功。
 
-### 2.1 设置帐号 ID
-
-在可以获取到用户唯一性信息时调用本方法登录，推荐首次安装启动时调用，其他方法均需在本方法成功之后才可正常使用。
-
-多次调用 `Login` 将覆盖先前的账号 ID。
-
-```csharp
-// 用户的唯一标识，此数据对应上报数据里的 user_id
-AbcSDKSpace.ABetterChoiceAPI.Login("USER_ID");
-```
-
-### 2.2 设置公共属性
+### 2.1 设置公共属性
 
 公共事件属性指的是每个事件都会带有的属性，您可以调用 `SetCommonProperties` 来设置公共事件属性。我们建议您在发送事件前，先设置公共事件属性。对于一些重要的属性，例如用户的会员等级、来源渠道等，这些属性需要设置在每个事件中，此时您可以将这些属性设置为公共事件属性。
 
@@ -159,7 +143,7 @@ AbcSDKSpace.ABetterChoiceAPI.SetCommonProperties(commonProperties);
 - Key 为该属性的名称，为字符串类型，规定只能以字母开头，包含数字，字母和下划线 "_"，长度最大为 50 个字符。
 - Value 为该属性的值，目前仅支持字符串。
 
-### 2.3 发送事件
+### 2.2 发送事件
 
 您可以调用 `Track` 方法来上传事件。建议您根据先前梳理的埋点文档来设置事件的属性以及发送信息的条件。以下以用户购买某商品作为范例：
 
@@ -176,7 +160,7 @@ Dictionary<string, string> eventProperties = new Dictionary<string, string>
 AbcSDKSpace.ABetterChoiceAPI.Track("product_buy", eventProperties);
 ```
 
-### 2.4 获取AB实验
+### 2.3 获取AB实验
 
 ```csharp
 // 获取实验分流信息，默认会在获取分流信息同时会进行自动上报。
@@ -186,7 +170,7 @@ AbcSDKSpace.ExperimentInfo experiment = AbcSDKSpace.ABetterChoiceAPI.GetExperime
 bool yourParamValue = experiment?.GetBoolValue("YourParamKey", true) ?? true;
 ```
 
-### 2.5 实验曝光
+### 2.4 实验曝光
 
 当设置 `EnableAutoExposure` 为 false 时，您可以根据上面获取的实验分流信息，手动记录曝光。
 
@@ -195,7 +179,7 @@ bool yourParamValue = experiment?.GetBoolValue("YourParamKey", true) ?? true;
 AbcSDKSpace.ABetterChoiceAPI.LogExperimentExposure(experiment);
 ```
 
-### 2.6 获取配置开关
+### 2.5 获取配置开关
 
 ```csharp
 // 获取配置开关信息
@@ -249,6 +233,7 @@ public class ABetterChoiceExample : MonoBehaviour
         {
             GameId = "YOUR_GAME_ID", // 项目游戏ID，必填，可以在ABetterChoice平台管理页查看
             ApiKey = "YOUR_API_KEY", // 项目API KEY，必填，可以在ABetterChoice平台管理页查看
+            UnitId = "YOUR_USER_OPENID", // 用户 openid，必填，用户的唯一标识，从对应小游戏平台获取
             AutoTrack = new AbcSDKSpace.AutoTrackConfig  // 可选，自动采集配置，默认全部关闭
             {
                 MgShow = true,  // 自动采集，游戏启动，或从后台进入前台
@@ -264,9 +249,6 @@ public class ABetterChoiceExample : MonoBehaviour
             {
                 // 初始化成功
                 Debug.Log("SDK 初始化成功");
-
-                // 登录用户
-                AbcSDKSpace.ABetterChoiceAPI.Login("USER_ID");
 
                 // 设置公共事件属性
                 Dictionary<string, string> commonProperties = new Dictionary<string, string>

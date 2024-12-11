@@ -320,7 +320,7 @@ namespace AbcSDKSpace
         {
             Result result = new Result(StatusCode.Success);
             GetExperimentsReq req = new GetExperimentsReq();
-            req.Guid = string.IsNullOrEmpty(this._config.UnitId) ? this._config.DeviceId : this._config.UnitId;
+            req.Guid = _config.UnitId;
             req.Profiles = new();
             if (_config?.Attributes != null)
             {
@@ -377,7 +377,7 @@ namespace AbcSDKSpace
         {
             Result result = new Result(StatusCode.Success);
             GetFeaturesReq req = new();
-            req.UnitID = string.IsNullOrEmpty(this._config.UnitId) ? this._config.DeviceId : this._config.UnitId;
+            req.UnitID = _config.UnitId;
             req.Profiles = new();
             if (_config?.Attributes != null)
             {
